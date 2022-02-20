@@ -3,22 +3,26 @@ import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-nativ
 import logo from './Healthlogo.png';
 import './App.css';
 import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Navbar from "./components/menubar"
+import Home from './pages/home'
+import kcal from "./pages/Kcal"
+import exerciseTimer from "./pages/exerciseTimer"
+import sleepScheduler from "./pages/sleepScheduler"
+import weightTracker from "./pages/WeightTracker"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p> 
-          CS35L Group Project - Health App
-        </p>
-        <Text style = {style.defText}>
-          This interactable app is designed to receive and display health information of a client
-        </Text>
-        <Button title='Start'/>
-      </header>
-      
-    </div>
+    <Router>
+    <Navbar />
+    <Switch>
+      <Route path='/' exact component={Home} />
+      <Route path='/Kcal' exact component={kcal} />
+      <Route path='/exerciseTimer' component={exerciseTimer} />
+      <Route path='/sleepScheduler' component={sleepScheduler} />
+      <Route path='/WeightTracker' component={weightTracker} />
+    </Switch>
+  </Router>
   );
 }
 

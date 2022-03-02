@@ -21,3 +21,188 @@
   color: #fff;
   font-size: 100px;
 }
+
+.create {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.create label {
+  font-size: 20px;
+  text-align: left;
+  display: block;
+}
+.create h2 {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 30px;
+  margin-top: 15px;
+}
+.create option{
+  font-size: 15px;
+  text-align: left;
+}
+
+.create input, .create textarea, .create select {
+  font-size: 15px;
+  width: 100%;
+  padding: 10px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+.create button {
+  background: rgb(0, 90, 44);
+  color: rgb(252, 252, 252);
+  border: 0;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.timer {
+  max-width: 450px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.timer select, .timer input {
+  font-size: 15px;
+  width: 100%;
+  padding: 10px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.todo-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 520px;
+  min-height: 600px;
+  background: #000000;
+  text-align: center;
+  margin: 128px auto;
+  border-radius: 10px;
+  padding-bottom: 32px;
+}
+
+h1 {
+  margin: 32px 0;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+}
+
+.complete {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.todo-form {
+  margin-bottom: 32px;
+}
+
+.todo-input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid rgb(0, 90, 44);
+  outline: none;
+  width: 320px;
+  background: transparent;
+  color: rgb(0, 0, 0);
+}
+
+.todo-input::placeholder {
+  color: #817a7a;
+}
+
+.todo-button {
+  color: rgb(252, 252, 252);
+  font-size: 15px;
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background:  rgb(0, 90, 44);
+  text-transform: capitalize;
+}
+
+.todo-input.edit {
+  border: 12px solid #149fff;
+}
+
+.todo-button.edit {
+  background: rgb(0, 90, 44);
+  padding: 16px 22px;
+}
+
+.todo-container {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.todo-row {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  color: #fff;
+  background: rgb(61, 141, 100);
+  padding: 16px;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.todo-row:nth-child(4n + 1) {
+  background: rgb(74, 131, 101);
+}
+
+.todo-row:nth-child(4n + 2) {
+  background: rgb(74, 131, 101);
+}
+
+.todo-row:nth-child(4n + 3) {
+  background: rgb(74, 131, 101);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.delete-icon {
+  margin-right: 5px;
+  color: #fff;
+}
+
+.edit-icon {
+  color: #fff;
+}
+
+.exerciseName{
+  text-align: left;
+  font-size: 24px;
+}
+
+.centerized{
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background:  rgb(0, 90, 44);
+  text-transform: capitalize;
+}

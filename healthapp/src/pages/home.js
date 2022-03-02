@@ -1,18 +1,14 @@
 import React from 'react';
-  
-const Home = () => {
+import '../../App.css';
+import Cards from '../Cards';
+import HeroSection from '../HeroSection';
+import Footer from '../Footer';
+
+function Home() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'Middle',
-        alignItems: 'Middle',
-        height: '100vh'
-      }}
-    >
-      <h1>Health App</h1>
-    </div>
+    <>
+    </>
   );
-};
-  
+}
+
 export default Home;

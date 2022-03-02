@@ -2,8 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import {useState} from "react";
 import '../../App.css';
-import Simple from '../exercise_timer/Simple.js'
-import TodoList from '../todo/TodoList';
+import ExerciseList from '../exercise_timer/ExerciseList';
 import { Link } from 'react-router-dom';
 
 
@@ -20,7 +19,7 @@ export default function ExerciseTimer() {
   return (
     <>
       {/* <Simple /> */}
-      <TodoList />
+      <ExerciseList />
       <Link
                 to='/sign-up'
                 className='nav-links-mobile'

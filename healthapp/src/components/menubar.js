@@ -15,6 +15,7 @@ const Navbar = () => {
         <Bars />
   
         <NavMenu>
+          <NavLink to='/' activeStyle> Home </NavLink>
           <NavLink to='/Kcal' activeStyle>
             Calorie Counter
           </NavLink>
@@ -30,9 +31,9 @@ const Navbar = () => {
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
-        <NavBtn>
-          <NavBtnLink to='/signin'>Sign In</NavBtnLink>
-        </NavBtn>
+          <NavBtn>
+              <NavBtnLink to='/signup'>Sign In</NavBtnLink>
+          </NavBtn>
       </Nav>
     </>
   );

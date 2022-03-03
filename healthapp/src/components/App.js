@@ -13,9 +13,7 @@ import weightTracker from "../pages/WeightTracker"
 
 
 import Signup from "./SignUp"
-import { Container } from "react-bootstrap"
 import { AuthProvider } from "./context"
-//import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
 import ForgotPassword from "./ForgotPassword"
@@ -28,11 +26,11 @@ function App() {
       <AuthProvider>
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/Kcal' exact component={kcal} />
-          <Route path='/exerciseTimer' component={exerciseTimer} />
-          <Route path='/sleepScheduler' component={sleepScheduler} />
-          <Route path='/WeightTracker' component={weightTracker} />
-          <Route path='/update-profile' component={UpdateProfile} />
+          <PrivateRoute path='/Kcal' exact component={kcal} />
+          <PrivateRoute path='/exerciseTimer' component={exerciseTimer} />
+          <PrivateRoute path='/sleepScheduler' component={sleepScheduler} />
+          <PrivateRoute path='/WeightTracker' component={weightTracker} />
+          <PrivateRoute path='/update-profile' component={UpdateProfile} />
           <Route path='/signup' component={Signup} />
           <Route path='/login' component={Login} />
           <Route path='/forgot-password' component={ForgotPassword} />

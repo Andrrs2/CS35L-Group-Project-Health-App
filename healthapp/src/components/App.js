@@ -34,6 +34,7 @@ function App() {
           <Route path='/WeightTracker' component={weightTracker} />
           <Route path='/update-profile' component={UpdateProfile} />
           <Route path='/signup' component={Signup} />
+          <Route path='/login' component={Login} />
         </Switch>
         </AuthProvider>
       </Router>

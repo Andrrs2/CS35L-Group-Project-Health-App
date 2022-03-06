@@ -219,3 +219,14 @@ h1 {
 .timer_pomo_text{
   font-size: 15px;
 }
+
+.sign_links {
+  color: #fff;
+  font-size: 22px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.sign_space{
+  margin-top: 30px;
+}

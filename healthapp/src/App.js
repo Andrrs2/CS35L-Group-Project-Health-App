@@ -2,14 +2,13 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
 import Home from './components/pages/Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CalorieCounter from './components/pages/Kcal';
 import WeightTracker from './components/pages/WeightTracker';
 import SleepTracker from './components/pages/SleepTracker';
-import Timer from './components/pages/Timer_Test';
+import Timer_Test from './components/pages/Timer_Test';
 
-import SignUp from "./components/user_auth/SignUp"
-import { Container } from "react-bootstrap"
+import Signup from "./components/user_auth/SignUp"
 import { AuthProvider } from "./components/user_auth/context"
 import Login from "./components/user_auth/Login"
 import PrivateRoute from "./components/user_auth/PrivateRoute"
@@ -20,18 +19,19 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
-        <AuthProvider>
-          <Routes>
-            <Route path="/timer_exercise" element={<Timer/>}/>
-            <Route path="/sleep_tracker" element={<SleepTracker/>}/>
-            <Route path="/calorie_counter" element={<CalorieCounter/>}/>
-            <Route path="/weight_tracker" element={<WeightTracker/>}/>
-            <Route path='/update-profile' component={UpdateProfile} />
-            <Route path="/sign-up" element={<SignUp/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/" element={<Home />} />
-          </Routes>
+      <Navbar />
+      <AuthProvider>
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <PrivateRoute path='/calorie_counter' exact component={CalorieCounter} />
+          <PrivateRoute path='/timer_exercise' component={Timer_Test} />
+          <PrivateRoute path='/sleep_tracker' component={SleepTracker} />
+          <PrivateRoute path='/weight_tracker' component={WeightTracker} />
+          <PrivateRoute path='/update-profile' component={UpdateProfile} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/login' component={Login} />
+          <Route path='/forgot-password' component={ForgotPassword} />
+        </Switch>
         </AuthProvider>
       </Router>
     </>

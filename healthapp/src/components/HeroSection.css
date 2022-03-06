@@ -70,3 +70,10 @@ video {
     width: 100%;
   }
 }
+
+.catchphrase{
+  margin-top: -40px;
+  color: #fff;
+  font-size: 25px;
+  font: Arial
+}

@@ -1,36 +1,17 @@
-// Import React
 import React from 'react';
-
-// Import Google Analytics
-import ReactGA from 'react-ga';
-
-// Import Material UI components
-import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { withStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-
-// Import icons
 import TimerIcon from "@material-ui/icons/Timer";
 import ListAltIcon from '@material-ui/icons/ListAlt';
-
-// Import the 3 pages' custom components
 import TimerComponent from "../timer/TimerComponent";
 import ScheduleComponent from "../timer/ScheduleComponent";
-
-// Import Timer component and supporting output formatting script
 import Timer from 'react-compound-timer';
 import numPadZeroToTwoPlaces from '../scripts/numPadZeroToTwoPlaces';
-
-// Import custom theme
 import themeDict from '../theme/themeDict';
 
-// Setup Google Analytics
-ReactGA.initialize("UA-176706567-3");
-ReactGA.pageview(window.location.pathname + window.location.search);
-
-// Setup theme
-const theme = createMuiTheme(themeDict);
+const theme = createTheme(themeDict);
 
 // Defining styles
 const useStyles = theme => ({

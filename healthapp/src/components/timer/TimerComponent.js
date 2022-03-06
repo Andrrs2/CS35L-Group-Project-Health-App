@@ -32,7 +32,7 @@ class TimerComponent extends React.Component {
         const { classes } = this.props;
         const { start, stop, reset, current, next, min, sec } = this.props.data;
         return (
-            <Grid container item direction="column" alignItems="center" justify="space-evenly" className={classes.timer}>
+            <Grid container item direction="column" alignItems="center" justifyContent="space-evenly" className={classes.timer}>
                 <Box item display="flex" flexDirection="column" alignItems="center" justifyContent="center" >
                 <Grid container direction="column" alignItems="center">
                     <Typography item variant="h2">{current}</Typography>
@@ -42,7 +42,7 @@ class TimerComponent extends React.Component {
                 </Box>
                 <Box item display="flex" flexDirection="column" alignItems="center" justifyContent="center" >
                     <Box border={5} className={classes.timerContainer} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                        <Grid container direction="row" justify="center">
+                        <Grid container direction="row" justifyContent="center">
                             <Typography item variant="h3" className={classes.timeText}>{min}</Typography>
                             <Typography item variant="h3" className={classes.timeText}>:</Typography>
                             <Typography item variant="h3" className={classes.timeText}>{sec}</Typography>

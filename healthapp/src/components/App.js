@@ -6,7 +6,7 @@ import { isLabelWithInternallyDisabledControl } from '@testing-library/user-even
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./menubar"
 import Home from '../pages/home'
-import kcal from "../pages/Kcal"
+import Kcal from "../pages/Kcal"
 import exerciseTimer from "../pages/exerciseTimer"
 import sleepScheduler from "../pages/sleepScheduler"
 import weightTracker from "../pages/WeightTracker"
@@ -26,7 +26,7 @@ function App() {
       <AuthProvider>
         <Switch>
           <Route path='/' exact component={Home} />
-          <PrivateRoute path='/Kcal' exact component={kcal} />
+          <PrivateRoute path='/Kcal' exact component={Kcal} />
           <PrivateRoute path='/exerciseTimer' component={exerciseTimer} />
           <PrivateRoute path='/sleepScheduler' component={sleepScheduler} />
           <PrivateRoute path='/WeightTracker' component={weightTracker} />

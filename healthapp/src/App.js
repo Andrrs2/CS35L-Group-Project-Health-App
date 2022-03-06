@@ -4,7 +4,6 @@ import './App.css';
 import Home from './components/pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CalorieCounter from './components/pages/Kcal';
-import ExerciseTimer from './components/pages/ExerciseTimer';
 import WeightTracker from './components/pages/WeightTracker';
 import SleepTracker from './components/pages/SleepTracker';
 import Timer from './components/pages/Timer_Test';

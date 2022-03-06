@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
@@ -74,18 +73,16 @@ function Navbar() {
                 Sleep Tracker
               </Link>
             </li>
-
-            <li>
+            <li className='nav-item'>
               <Link
-                to='/sign-up'
-                className='nav-links-mobile'
+                to='/login'
+                className='nav-links'
                 onClick={closeMobileMenu}
               >
                 Sign In
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>SIGN IN</Button>}
         </div>
       </nav>
     </>

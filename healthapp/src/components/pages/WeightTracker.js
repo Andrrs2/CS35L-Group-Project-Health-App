@@ -10,31 +10,30 @@ export default class Kcal extends React.Component{
 
   constructor(props){
     super(props)
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       weight: 0,
       isSelected: false,
-    };
+      data: 0,
+    }
   }
-
+  handleSubmit(event) {
+    alert('A weight was submitted: ' + this.state.weight);
+    event.preventDefault();
+  }
   render()
   {
     return (
       <View style = {styles.container}>
       <h3>Weight Tracker:</h3>
         <View style = {styles.checkboxContainer}>
-          <CheckBox style = {styles.checkbox}
-            value = {this.state.isSelected}
-            onValueChange={() => this.setState({isSelected: !this.state.isSelected})}
-          />
-          <Text>
-            Metric System
-          </Text>
         <View style={styles.container}>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group id="weight">
             <Form.Label>Weight ({this.state.isSelected ? "kg" : "lb"})</Form.Label>
             <Form.Control type="weight" value={this.state.weight} onChange={e => this.setState({weight: e.target.value })} required />
-          </Form.Group> 
+            <input type="submit" value="Submit" />
+          </Form.Group>
         </Form>
         </View>
         </View>
@@ -42,9 +41,9 @@ export default class Kcal extends React.Component{
           <Paper>
           <Chart
            data={[
-            { argument: 1, value: 10 },
-            { argument: 2, value: 20 },
-            { argument: 3, value: 30 },
+            { argument: 1, value: 1},
+            { argument: 2, value: 30 },
+            { argument: 3, value: 20 },
           ]}
           >
           <ArgumentAxis />
@@ -57,7 +56,22 @@ export default class Kcal extends React.Component{
       )
     }
 };
-
+function createChart(x, y)
+{
+<Paper>
+  <Chart
+    data={[
+      { argument: x, value: y},
+      { argument: 2, value: 30 },
+      { argument: 3, value: 20 },
+    ]}
+    >
+    <ArgumentAxis />
+    <ValueAxis />
+   <LineSeries valueField="value" argumentField="argument" />  
+  </Chart>
+</Paper>
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -80,6 +94,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: 150, 
     width: 500,
-    bottom: 0
   },
 });

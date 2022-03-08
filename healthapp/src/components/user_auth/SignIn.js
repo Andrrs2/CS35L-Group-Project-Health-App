@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "./context"
 import { Link, useHistory } from "react-router-dom"
 
-export default function Login() {
+export default function Signin() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const { login } = useAuth()
@@ -32,7 +32,7 @@ export default function Login() {
     <div>
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Log In</h2>
+          <h2 className="text-center mb-4">Sign In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
@@ -44,7 +44,7 @@ export default function Login() {
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              Log In
+              Sign In
             </Button>
           </Form>
           <div className="w-100 text-center mt-3">

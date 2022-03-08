@@ -4,7 +4,7 @@ import { useAuth } from "./context"
 import { Link, useHistory } from "react-router-dom"
 
 
-export default function Logout() {
+export default function Signout() {
   const { logout } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -19,7 +19,7 @@ export default function Logout() {
       await logout();
       history.push("/")
     } catch {
-      setError("Failed to log out")
+      setError("Failed to sign out")
     }
 
     setLoading(false)
@@ -30,11 +30,11 @@ export default function Logout() {
     <center>
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Log Out</h2>
+          <h2 className="text-center mb-4">Sign Out</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Button disabled={loading} className="w-100" type="submit">
-                Log Out
+                Sign Out
             </Button>
           </Form>
         </Card.Body>

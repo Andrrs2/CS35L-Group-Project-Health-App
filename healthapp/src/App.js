@@ -10,11 +10,11 @@ import Timer_Test from './components/pages/Timer_Test';
 
 import Signup from "./components/user_auth/SignUp"
 import { AuthProvider } from "./components/user_auth/context"
-import Login from "./components/user_auth/Login"
+import Signin from "./components/user_auth/SignIn"
 import PrivateRoute from "./components/user_auth/PrivateRoute"
 import ForgotPassword from "./components/user_auth/ForgotPassword"
 import UpdateProfile from "./components/user_auth/UpdateProfile"
-import Logout from "./components/user_auth/LogOut"
+import Signout from "./components/user_auth/SignOut"
 
 function App() {
   return (
@@ -29,9 +29,9 @@ function App() {
           <PrivateRoute path='/sleep_tracker' component={SleepTracker} />
           <PrivateRoute path='/weight_tracker' component={WeightTracker} />
           <PrivateRoute path='/update-profile' component={UpdateProfile} />
-          <PrivateRoute path='/logout' component={Logout} />
+          <PrivateRoute path='/signout' component={Signout} />
           <Route path='/signup' component={Signup} />
-          <Route path='/login' component={Login} />
+          <Route path='/signin' component={Signin} />
           <Route path='/forgot-password' component={ForgotPassword} />
         </Switch>
         </AuthProvider>

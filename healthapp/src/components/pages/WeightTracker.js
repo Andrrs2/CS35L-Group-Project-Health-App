@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react';
 import { Form, } from "react-bootstrap";
 import { CheckBox, Text, StyleSheet, View} from "react-native";
 import weightTracker from './WeightTracker';
+import Paper from '@mui/material/Paper';
+import {ArgumentAxis, ValueAxis, Chart, LineSeries} from '@devexpress/dx-react-chart-material-ui';
 
 export default class Kcal extends React.Component{
 
@@ -10,10 +12,10 @@ export default class Kcal extends React.Component{
     super(props)
     this.state = {
       weight: 0,
-      gender: "male",
       isSelected: false,
     };
   }
+
   render()
   {
     return (
@@ -27,8 +29,6 @@ export default class Kcal extends React.Component{
           <Text>
             Metric System
           </Text>
-          
-        </View>
         <View style={styles.container}>
         <Form>
           <Form.Group id="weight">
@@ -37,6 +37,22 @@ export default class Kcal extends React.Component{
           </Form.Group> 
         </Form>
         </View>
+        </View>
+        <View style={styles.picker}>
+          <Paper>
+          <Chart
+           data={[
+            { argument: 1, value: 10 },
+            { argument: 2, value: 20 },
+            { argument: 3, value: 30 },
+          ]}
+          >
+          <ArgumentAxis />
+          <ValueAxis />
+           <LineSeries valueField="value" argumentField="argument" />
+             </Chart>
+               </Paper>
+               </View>
         </View>
       )
     }
@@ -59,5 +75,11 @@ const styles = StyleSheet.create({
   checkbox: {
     alignSelf: "center",
     marginHorizontal: 20,
+  },
+  picker: { 
+    alignSelf: "center",
+    height: 150, 
+    width: 500,
+    bottom: 0
   },
 });

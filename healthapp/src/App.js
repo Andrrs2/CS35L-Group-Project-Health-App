@@ -14,6 +14,7 @@ import Login from "./components/user_auth/Login"
 import PrivateRoute from "./components/user_auth/PrivateRoute"
 import ForgotPassword from "./components/user_auth/ForgotPassword"
 import UpdateProfile from "./components/user_auth/UpdateProfile"
+import Logout from "./components/user_auth/LogOut"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <PrivateRoute path='/sleep_tracker' component={SleepTracker} />
           <PrivateRoute path='/weight_tracker' component={WeightTracker} />
           <PrivateRoute path='/update-profile' component={UpdateProfile} />
+          <PrivateRoute path='/logout' component={Logout} />
           <Route path='/signup' component={Signup} />
           <Route path='/login' component={Login} />
           <Route path='/forgot-password' component={ForgotPassword} />

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Form, } from "react-bootstrap";
 import { CheckBox, Text, StyleSheet, View} from "react-native";
 import Paper from '@mui/material/Paper';
-import {ArgumentAxis, ValueAxis, Chart, LineSeries} from '@devexpress/dx-react-chart-material-ui';
+import {ArgumentAxis, ValueAxis, Chart, LineSeries, SplineSeries} from '@devexpress/dx-react-chart-material-ui';
 
 export default class weightTracker extends React.Component{
   constructor(props){
@@ -18,7 +18,8 @@ export default class weightTracker extends React.Component{
   handleSubmit(event) {
     this.setState({track: this.state.track + 1})
     let DataArray = [...this.state.DataArray];
-    DataArray[this.state.track-1] = {argument: this.state.track, value: this.state.weight};
+    DataArray[0] = {argument: 0, value: 0}
+    DataArray[this.state.track] = {argument: this.state.track, value: this.state.weight};
     this.setState({ DataArray });
     alert('A weight was submitted: ' + this.state.weight);
     event.preventDefault();
@@ -47,7 +48,11 @@ export default class weightTracker extends React.Component{
           >
             <ArgumentAxis />
             <ValueAxis />
-            <LineSeries valueField="value" argumentField="argument" />  
+            <LineSeries valueField="value" argumentField="argument" color='BLUE' /> 
+            <SplineSeries
+            valueField="splineValue"
+            argumentField="argument"
+          /> 
           </Chart>
         </Paper>
         </View>

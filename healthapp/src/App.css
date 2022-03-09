@@ -104,98 +104,6 @@ h1 {
   opacity: 0.4;
 }
 
-.exercise-form {
-  margin-bottom: 32px;
-}
-
-.exercise-input {
-  padding: 14px 32px 14px 16px;
-  border-radius: 4px 0 0 4px;
-  border: 2px solid rgb(0, 90, 44);
-  outline: none;
-  width: 320px;
-  background: transparent;
-  color: rgb(0, 0, 0);
-}
-
-.exercise-input::placeholder {
-  color: #817a7a;
-}
-
-.exercise-button {
-  color: rgb(252, 252, 252);
-  font-size: 15px;
-  padding: 16px;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  outline: none;
-  background:  rgb(0, 90, 44);
-  text-transform: capitalize;
-}
-
-.exercise-input.edit {
-  border: 12px solid #149fff;
-}
-
-.exercise-button.edit {
-  background: #005a2c;
-  padding: 16px 22px;
-}
-
-.exercise-container {
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-}
-
-.exercise-row {
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4px auto;
-  color: #fff;
-  background: rgb(61, 141, 100);
-  padding: 16px;
-  border-radius: 5px;
-  width: 90%;
-}
-
-.exercise-row:nth-child(4n + 1) {
-  background: rgb(74, 131, 101);
-}
-
-.exercise-row:nth-child(4n + 2) {
-  background: rgb(74, 131, 101);
-}
-
-.exercise-row:nth-child(4n + 3) {
-  background: rgb(74, 131, 101);
-}
-
-.icons {
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.delete-icon {
-  margin-right: 5px;
-  color: #fff;
-}
-
-.edit-icon {
-  color: #fff;
-}
-
-.exerciseName{
-  text-align: left;
-  font-size: 24px;
-}
-
 .centerized{
   color: #ffffff;
   font-size: 15px;
@@ -204,7 +112,7 @@ h1 {
   border-radius: 0 4px 4px 0;
   cursor: pointer;
   outline: none;
-  background:  rgb(0, 90, 44);
+  background:  #005a2c;
   text-transform: capitalize;
 }
 
@@ -229,4 +137,179 @@ h1 {
 
 .sign_space{
   margin-top: 30px;
+}
+
+.searchInputs {
+  display: flex;
+}
+
+.search input {
+  font-family: sans-serif;
+  height: 60px;
+  width: 500px;
+  background-color: rgb(171, 218, 169);
+  border: 0;
+  border-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  font-size: 25px;
+  padding: 15px;
+  ;
+}
+
+input:focus {
+  outline: none;
+}
+
+.dataResult {
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 20px;
+  margin-top: 5px;
+  height: 200px;
+  width: 500px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: auto; 
+}
+
+.dataResult::-webkit-scrollbar {
+  display: none;
+}
+
+.dataResult .dataItem{
+  font-family: sans-serif;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: black;
+  background-color: white;
+}
+
+.dataItem:hover{
+  background-color: lightgrey;
+}
+.dataItem p {
+  font-family: sans-serif;
+  margin-left: 10px;
+}
+a {
+  text-decoration: none;
+}
+
+.search_container {
+  background-color: #f9fffb;
+  padding: 2rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonContainer_kcal{
+  margin-top: 10px;
+}
+
+.label_form{
+  margin-right: 50px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.form_box{
+  margin-bottom: 10px;
+  margin-left: 28px;
+  padding: 10px 10px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.form_box1{
+  margin-bottom: 10px;
+  margin-left: 15px;
+  padding: 10px 10px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.form_box2{
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding: 10px 10px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.input_form{
+  margin-bottom: 10px;
+  margin-left: -18px;
+  padding: 10px 10px;
+  font-family: sans-serif;
+  font-size: 20px;
+  border-color: rgb(171, 218, 169);
+  background: rgb(171, 218, 169);
+}
+
+.submit_form{
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 10px 10px;
+  font-family: sans-serif;
+  font-size: 20px;
+  border-color: rgb(171, 218, 169);
+  background: rgb(171, 218, 169);
+}
+
+.email_label{
+  margin-right: 88px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.w-100{
+  background: #278052;
+  font-size: 20px;
+  margin-bottom: 7px;
+  padding: 10px 10px;
+  
+  
+}
+
+.sign_in_cont{
+  margin-top: 50px;
+}
+
+.text_100{
+  color: white;
+  font-family: sans-serif;
+}
+
+.forgot_pass{
+  color: black;
+  font-family: sans-serif;
+}
+
+.username_label{
+  margin-right: 335px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.email1_label{
+  margin-right: 375px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.confirm_label{
+  margin-right: 215px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.goal_label{
+  margin-right: 250px;
+  font-family: sans-serif;
+  font-size: 20px;
 }

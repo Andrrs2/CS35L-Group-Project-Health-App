@@ -36,39 +36,42 @@ export default function Signup() {
   return (
     <>
     <center>
+    <div className="sign_in_cont">
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="username">
-              <Form.Label>Username </Form.Label>
-              <Form.Control type="username" ref={usernameRef} required />
+              <Form.Label className="username_label">Username </Form.Label>
+              <Form.Control className="form_box1" type="username" ref={usernameRef} required />
             </Form.Group>
             <Form.Group id="email">
-              <Form.Label>Email </Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Label className="email1_label">Email </Form.Label>
+              <Form.Control className="form_box1" type="email" ref={emailRef} required />
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password (At least 6 characters long) </Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
+              <Form.Label className="email_label">Password (At least 6 characters long) </Form.Label>
+              <Form.Control className="form_box1"  type="password" ref={passwordRef} required />
             </Form.Group>
             <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation </Form.Label>
-              <Form.Control type="password" ref={passwordConfirmRef} required />
+              <Form.Label className="confirm_label">Password Confirmation </Form.Label>
+              <Form.Control className="form_box1" type="password" ref={passwordConfirmRef} required />
             </Form.Group>
             <Form.Group id="goals">
-              <Form.Label>Write down your goals! </Form.Label>
-              <Form.Control as="textarea" rows={3} ref={goalsRef} required />
+              <Form.Label className="goal_label">Write down your goals! </Form.Label>
+              <Form.Control className="form_box1"as="textarea" rows={3} ref={goalsRef} required />
             </Form.Group>
+            <div className="buttonContainer_kcal">
             <Button disabled={loading} className="w-100" type="submit">
-              Sign Up
+            <p className="text_100">Sign Up</p>
             </Button>
+            </div>
           </Form>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        Already have an account? <Link to="/signin">Sign In</Link>
+      <div>
+      <p className="forgot_pass">Already have an account? <Link to="/signin">Sign In</Link></p>
+      </div>
       </div>
       </center>
     </>

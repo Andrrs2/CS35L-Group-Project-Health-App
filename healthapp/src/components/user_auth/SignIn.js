@@ -29,31 +29,32 @@ export default function Signin() {
   return (
     <>
     <center>
-    <div>
+    <div className="sign_in_cont">
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Sign In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
-              <Form.Label>Email </Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Label className="email_label">Email </Form.Label>
+              <Form.Control className="form_box1" type="email" ref={emailRef} required />
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password </Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
+              <Form.Label className="label_form">Password </Form.Label>
+              <Form.Control className="form_box1" type="password" ref={passwordRef} required />
             </Form.Group>
+            <div className="buttonContainer_kcal">
             <Button disabled={loading} className="w-100" type="submit">
-              Sign In
+              <p className="text_100">Sign In</p>
             </Button>
+            </div>
           </Form>
-          <div className="w-100 text-center mt-3">
-            <Link to="/forgot-password">Forgot Password?</Link>
+          <div >
+            <Link to="/forgot-password"> <p className="forgot_pass">Forgot Password?</p></Link>
           </div>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
+      <div >
+      <p className="forgot_pass">Need an account? <Link to="/signup">Sign Up</Link> </p>
       </div>
       </div>
       </center>

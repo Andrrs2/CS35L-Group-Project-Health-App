@@ -1,8 +1,29 @@
 import { calculateNewValue } from '@testing-library/user-event/dist/utils';
 import React from 'react';
+import "../../App.css";
 import { Form, Card, Alert } from "react-bootstrap";
 import { CheckBox, Text, StyleSheet, View, Picker, Button } from "react-native";
 import weightTracker from './WeightTracker';
+import { withStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
+import themeDict from '../theme/themeDict';
+import Box from "@material-ui/core/Box";
+
+const theme = createTheme(themeDict);
+
+const useStyles = theme => ({
+  root: {
+    minWidth: "100vw",
+    maxWidth: "100vw",
+    minHeight: "100vh",
+    maxHeight: "100vh",
+    display: "flex",
+    flexFlow: "column",
+    alignItems: "stretch"
+  },
+  page: {
+    flexGrow: 1,
+  },
+});
 
 export default class Kcal extends React.Component{
 
@@ -100,75 +121,81 @@ export default class Kcal extends React.Component{
     render()
     {
       return (
-        <View style = {styles.container}>
-        <h3>Calorie Counter:</h3>
+        <ThemeProvider theme={theme}>
+        <Box >
+            <View style = {styles.container}>
 
-        <div>
-          <img src="https://imagesvc.meredithcorp.io/v3/jumpstartpure/image?url=https://cf-images.us-east-1.prod.boltdns.net/v1/static/5978871887001/a0dce445-a4cd-4a75-84bd-214f89ee723f/ec7257d3-53b9-4b77-aacd-435da2bff73b/1280x720/match/image.jpg&w=1280&h=720&q=90&c=cc" alt = "calorie" width={384} height={216}/>
-        </div>
+            <div>
+              <img src="https://imagesvc.meredithcorp.io/v3/jumpstartpure/image?url=https://cf-images.us-east-1.prod.boltdns.net/v1/static/5978871887001/a0dce445-a4cd-4a75-84bd-214f89ee723f/ec7257d3-53b9-4b77-aacd-435da2bff73b/1280x720/match/image.jpg&w=1280&h=720&q=90&c=cc" alt = "calorie" width={400} height={250}/>
+            </div>
 
-        <View style = {styles.checkboxContainer}>
-          <CheckBox style = {styles.checkbox}
-            value = {this.state.isSelected}
-            onValueChange={() => this.setState({isSelected: !this.state.isSelected})}
-          />
-          <Text>
-            Metric System
-          </Text>
-          
-        </View>
-        <View style = {styles.checkboxContainer}>
-          <Picker style={styles.picker}
-            selectedValue={this.state.gender}
-            onValueChange={() => this.state.gender == "male" ? this.setState({gender: "female"}) : this.setState({gender: "male"})}
-          >
-            <Picker.Item label="Male" value="male" />
-            <Picker.Item label="Female" value="female" />
-          </Picker>
-        </View>
-        <View style={styles.container}>
-        <Form>
-          <Form.Group id="weight">
-            <Form.Label>Weight ({this.state.isSelected ? "kg" : "lb"})</Form.Label>
-            <Form.Control type="weight" value={this.state.weight} onChange={e => this.setState({weight: e.target.value })} required />
-          </Form.Group>
-          <Form.Group id="height">
-            <Form.Label>Height ({this.state.isSelected ? "m" : "in"})</Form.Label>
-            <Form.Control type="height" value={this.state.height} onChange={e => this.setState({height: e.target.value })}required />
-          </Form.Group>
-          <Form.Group id="age">
-            <Form.Label>Age (Yrs)</Form.Label>
-            <Form.Control type="age" value={this.state.age} onChange={e => this.setState({age: e.target.value })}required />
-          </Form.Group>
-          <Button onPress={this.getBMI.bind(this)} title="Calculate BMI">
-          </Button>
-          <Button onPress={this.getBMR.bind(this)} title="Calculate BMR">
-          </Button>
-        </Form>
-
-        <Text style = {styles.label}>
-          BMI: {this.state.BMI} {'\n'}
-          BMR: {this.state.BMR} {'\n'}
-          Recommended Daily Calorie Intake: {this.state.BMR} Kcal / Day
-        </Text>
-        </View>
-        <Form>
-          <Form.Group id="bmi">
-          <Form.Label>Enter BMI Here:</Form.Label>
-            <Form.Control type="bmi" value={this.state.BMI} onChange={e => this.setState({BMI: e.target.value })} required />
-          </Form.Group>
-          <Button onPress={this.getMessage.bind(this)} title="Get Recommendation">
-          </Button>
-        </Form>
-        <View style={styles.container}>
-          <Text style={styles.label}>
-            BMI: {this.state.BMI} {'\n'}
-            {this.state.message}
-          </Text>
-        </View>
-
-        
-        </View>
+            <View style = {styles.checkboxContainer}>
+              <CheckBox style = {styles.checkbox}
+                value = {this.state.isSelected}
+                onValueChange={() => this.setState({isSelected: !this.state.isSelected})}
+              />
+              <div className="label_form">
+                Metric System
+              </div>
+              
+            </View>
+            <View style = {styles.checkboxContainer}>
+              <Picker style={styles.picker}
+                selectedValue={this.state.gender}
+                onValueChange={() => this.state.gender == "male" ? this.setState({gender: "female"}) : this.setState({gender: "male"})}
+              >
+                <Picker.Item label="Male" value="male" />
+                <Picker.Item label="Female" value="female" />
+              </Picker>
+            </View>
+            <View style={styles.container}>
+            <Form>
+              <Form.Group id="weight">
+                <Form.Label className="label_form">Weight ({this.state.isSelected ? "kg" : "lb"})</Form.Label>
+                <Form.Control className="form_box1" type="weight" value={this.state.weight} onChange={e => this.setState({weight: e.target.value })} required />
+              </Form.Group>
+              <Form.Group id="height">
+                <Form.Label className="label_form">Height ({this.state.isSelected ? "m" : "in"})</Form.Label>
+                <Form.Control className="form_box2" type="height" value={this.state.height} onChange={e => this.setState({height: e.target.value })}required />
+              </Form.Group>
+              <Form.Group id="age">
+                <Form.Label className="label_form">Age (Yrs)</Form.Label>
+                <Form.Control className="form_box" type="age" value={this.state.age} onChange={e => this.setState({age: e.target.value })}required />
+              </Form.Group>
+              <div className="buttonContainer_kcal">
+              <Button color="#01793b" onPress={this.getBMI.bind(this)} title="Calculate BMI">
+              </Button>
+              </div>
+              <div className="buttonContainer_kcal">
+              <Button color="#01793b" onPress={this.getBMR.bind(this)} title="Calculate BMR">
+              </Button>
+              </div>
+            </Form>
+            <Text style = {styles.label}>
+              BMI: {this.state.BMI} {'\n'}
+              BMR: {this.state.BMR} {'\n'}
+              Recommended Daily Calorie Intake: {this.state.BMR} Kcal / Day
+            </Text>
+            </View>
+            <Form>
+              <Form.Group id="bmi">
+              <Form.Label className="label_form">Enter BMI Here:</Form.Label>
+                <Form.Control className="form_box"  type="bmi" value={this.state.BMI} onChange={e => this.setState({BMI: e.target.value })} required />
+              </Form.Group>
+              <div className="buttonContainer_kcal">
+              <Button color="#01793b" onPress={this.getMessage.bind(this)} title="Get Recommendation">
+              </Button>
+              </div>
+            </Form>
+            <View style={styles.container}>
+              <Text style={styles.label}>
+                BMI: {this.state.BMI} {'\n'}
+                {this.state.message}
+              </Text>
+            </View>
+            </View>
+            </Box>
+      </ThemeProvider>
       )
     }
 };
@@ -191,16 +218,21 @@ const styles = StyleSheet.create({
   checkbox: {
     alignSelf: "center",
     marginHorizontal: 20,
+    height: 20, 
+    width: 20,
   },
   label: {
     margin: 8,
+    marginTop: 20,
     marginHorizontal: 10,
     letterSpacing: 2,
     alignItems: "center",
+    fontSize: 20,
   },
   picker: {
     height: 50, 
     width: 150,
+    fontSize:20
   },
 
   forms: {

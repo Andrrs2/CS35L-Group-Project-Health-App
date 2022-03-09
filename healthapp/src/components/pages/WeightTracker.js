@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Form, } from "react-bootstrap";
+import "../../App.css";
 import { CheckBox, Text, StyleSheet, View} from "react-native";
 import Paper from '@mui/material/Paper';
 import {ArgumentAxis, ValueAxis, Chart, LineSeries, SplineSeries} from '@devexpress/dx-react-chart-material-ui';
@@ -29,18 +30,17 @@ export default class weightTracker extends React.Component{
   {
     return (
       <View style = {styles.container}>
-      <h3>Weight Tracker:</h3>
       <View style = {styles.checkboxContainer}>
         <View style={styles.container}>
         <Form onSubmit= {this.handleSubmit}>
           <Form.Group id="weight">
-            <Form.Label>Weight (lb)</Form.Label>
-            <Form.Control type="weight" value={this.state.weight}  onChange={e => this.setState({weight: e.target.value})} required />
-            <input type="submit" value="Submit" />
+            <Form.Label className="label_form">Weight (lb)</Form.Label>
+            <Form.Control className="form_box1" type="weight" value={this.state.weight}  onChange={e => this.setState({weight: e.target.value})} required />
+            <input className="submit_form" type="submit" value="Submit" />
           </Form.Group>
-        <View style = {styles.checkbox}>
+        <View color="#01793b" style = {styles.checkbox}>
         <form onSubmit={localStorage.clear()}>
-         <input type="submit" value="Clear Storage" />
+         <input className="input_form" type="submit" value="Clear Storage" />
           </form>  
           </View>
         </Form> 

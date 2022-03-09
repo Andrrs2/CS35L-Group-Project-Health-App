@@ -7,6 +7,8 @@ export default function Signup() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
+  const usernameRef = useRef()
+  const goalsRef = useRef()
   const { signup } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -22,7 +24,7 @@ export default function Signup() {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)
+      await signup(usernameRef.current.value, emailRef.current.value, passwordRef.current.value, goalsRef.current.value)
       history.push("/")
     } catch {
       setError("Failed to create an account")
@@ -39,6 +41,10 @@ export default function Signup() {
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            <Form.Group id="username">
+              <Form.Label>Username </Form.Label>
+              <Form.Control type="username" ref={usernameRef} required />
+            </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email </Form.Label>
               <Form.Control type="email" ref={emailRef} required />
@@ -50,6 +56,10 @@ export default function Signup() {
             <Form.Group id="password-confirm">
               <Form.Label>Password Confirmation </Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
+            </Form.Group>
+            <Form.Group id="goals">
+              <Form.Label>Write down your goals! </Form.Label>
+              <Form.Control as="textarea" rows={3} ref={goalsRef} required />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               Sign Up

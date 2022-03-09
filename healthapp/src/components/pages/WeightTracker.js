@@ -14,8 +14,8 @@ export default class weightTracker extends React.Component{
     this.state = {
       domain: 250,
       weight: 0,
-      track: JSON.parse(window.sessionStorage.getItem('track')) === null ? 1 : JSON.parse(window.sessionStorage.getItem('track')),
-      DataArray: JSON.parse(window.sessionStorage.getItem('DataArray') === null) ? [{argument: 0, value: 0}] : JSON.parse(window.sessionStorage.getItem('DataArray')),
+      track: JSON.parse(window.localStorage.getItem('track')) === null ? 1 : JSON.parse(window.localStorage.getItem('track')),
+      DataArray: JSON.parse(window.localStorage.getItem('DataArray') === null) ? [{argument: 0, value: 0}] : JSON.parse(window.localStorage.getItem('DataArray')),
     }
   }
 
@@ -28,11 +28,12 @@ export default class weightTracker extends React.Component{
     let DataArray = [...this.state.DataArray];
     DataArray[this.state.track] = {argument: this.state.track, value: this.state.weight};
     this.setState({ DataArray });
-    window.sessionStorage.setItem('track',  JSON.stringify(this.state.track));
-    window.sessionStorage.setItem('DataArray',  JSON.stringify(DataArray));
+    window.localStorage.setItem('track',  JSON.stringify(this.state.track));
+    window.localStorage.setItem('DataArray',  JSON.stringify(DataArray));
     alert('Submitted weight: ' + this.state.weight);
     event.preventDefault();
   }
+
   render()
   {
     return (

@@ -1,13 +1,13 @@
 import React from 'react';
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import ListItem from '@material-ui/core/ListItem';
 import PeriodInput from './PeriodInput.js';
 import TextField from '@material-ui/core/TextField';
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 export default function ScheduleEntry({index, isFirst, isLast, editable, entry, upFunc, downFunc, delFunc, addFunc, editFunc}) {
     return (

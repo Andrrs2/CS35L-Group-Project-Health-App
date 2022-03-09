@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    // Scrolls if content overflows and set background color
     numInput: {
         width: 50,
         marginLeft: 5,
@@ -12,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PeriodInput({ disabled, min, sec, editFunc, index }) { // assumes that input default value for period is in seconds
+export default function PeriodInput({ disabled, min, sec, editFunc, index }) { 
     const classes = useStyles();
     return (
         <Grid container direction="row" justify="center" alignItems="center">

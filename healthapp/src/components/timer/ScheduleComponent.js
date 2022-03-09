@@ -8,11 +8,12 @@ import DoneIcon from '@material-ui/icons/Done';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from "@material-ui/core/IconButton";
 import ListItem from '@material-ui/core/ListItem';
-import secondsToHms from '../scripts/secondsToHms.js';
-import hmsToSeconds from '../scripts/hmsToSeconds.js';
+import secondsToHms from './secondsToHms.js';
+import hmsToSeconds from './hmsToSeconds.js';
+import ExerciseData from "./Exercises.json";
+import SearchBar from "./SearchBar";
 
 const useStyles = theme => ({
-    // Scrolls if content overflows and set background color
     schedule: {
         backgroundColor: theme.palette.background.paper,
         overflowY: "scroll",
@@ -45,8 +46,8 @@ class ScheduleComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: props.data.taskSchedule.map(entry => ({ name: entry.name, ...secondsToHms(entry.period) })), // converts entries to have period split into hr, min, sec attributes
-            editing: false, // Defaults, i.e. starts off not editing
+            data: props.data.taskSchedule.map(entry => ({ name: entry.name, ...secondsToHms(entry.period) })), 
+            editing: false, 
             settings: props.data.settings,
         };
         this.updateSchedule = props.func.updateSchedule;
@@ -80,13 +81,12 @@ class ScheduleComponent extends React.Component {
 
     addEntry(index) {
         let currentData = this.state.data;
-        currentData.splice(index + 1, 0, { name: "New Exercise", hr: 0, min: 0, sec: 0 }); // Adding the default new task
+        currentData.splice(index + 1, 0, { name: "New Exercise", hr: 0, min: 0, sec: 0 }); 
         this.setState({ data: currentData });
     }
 
     setEditing() {
         const currentEditingState = this.state.editing;
-        // Update corresponding state for schedule data in parent App component given that status before edit button press was in editing, i.e. the press was to confirm the edit
         if (currentEditingState) {
             let newSchedule = this.state.data.map(entry => ({
                 name: entry.name,
@@ -97,20 +97,17 @@ class ScheduleComponent extends React.Component {
             }))
             let newSettings = this.state.settings;
             this.updateSchedule(newSchedule, newSettings);
-            // Changes back to Timer as you've just finished updating the schedule
             this.changePage("timer");
         }
         this.setState({ editing: !currentEditingState });
     }
 
-    // Edits given attribute of entry (of given index) in state.data to specified value
     editEntry(index, key, value) {
         let currentData = this.state.data;
         currentData[index][key] = value;
         this.setState({ data: currentData });
     }
 
-    // Changes setting state in this component only
     changeSetting(e) {
         let currentSettings = this.state.settings;
         currentSettings[e.target.name] = e.target.checked;
@@ -136,6 +133,10 @@ class ScheduleComponent extends React.Component {
             </ScheduleEntry>
         ));
         return (
+            <>
+            <div className="search_container">
+                <SearchBar data={ExerciseData} />
+            </div>
             <div className={classes.schedule}>
                 <List>
                     {entries}
@@ -150,6 +151,7 @@ class ScheduleComponent extends React.Component {
                     {fabIconDict[this.state.editing.toString()]}
                 </Fab>
             </div>
+            </>
         );
     }
 }

@@ -5,22 +5,29 @@ import { CheckBox, Text, StyleSheet, View} from "react-native";
 import weightTracker from './WeightTracker';
 import Paper from '@mui/material/Paper';
 import {ArgumentAxis, ValueAxis, Chart, LineSeries} from '@devexpress/dx-react-chart-material-ui';
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 export default class Kcal extends React.Component{
-
   constructor(props){
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       weight: 0,
       isSelected: false,
-      data: 0,
+      track: 0,
+      DataArray: [{argument: 0, value: 0}]
     }
   }
+
   handleSubmit(event) {
+    this.state.track++
+    let DataArray = [...this.state.DataArray];
+    DataArray[this.state.track-1] = {argument: this.state.track, value: this.state.weight};
+    this.setState({ DataArray });
     alert('A weight was submitted: ' + this.state.weight);
     event.preventDefault();
   }
+
   render()
   {
     return (
@@ -28,7 +35,7 @@ export default class Kcal extends React.Component{
       <h3>Weight Tracker:</h3>
         <View style = {styles.checkboxContainer}>
         <View style={styles.container}>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit= {this.handleSubmit}>
           <Form.Group id="weight">
             <Form.Label>Weight ({this.state.isSelected ? "kg" : "lb"})</Form.Label>
             <Form.Control type="weight" value={this.state.weight} onChange={e => this.setState({weight: e.target.value })} required />
@@ -38,33 +45,26 @@ export default class Kcal extends React.Component{
         </View>
         </View>
         <View style={styles.picker}>
-          <Paper>
+        <Paper>
           <Chart
-           data={[
-            { argument: 1, value: 1},
-            { argument: 2, value: 30 },
-            { argument: 3, value: 20 },
-          ]}
+             data = {this.state.DataArray}
           >
-          <ArgumentAxis />
-          <ValueAxis />
-           <LineSeries valueField="value" argumentField="argument" />
-             </Chart>
-               </Paper>
-               </View>
+            <ArgumentAxis />
+            <ValueAxis />
+            <LineSeries valueField="value" argumentField="argument" />  
+          </Chart>
+        </Paper>
+        </View>
         </View>
       )
     }
 };
-function createChart(x, y)
+
+function createChart(Data)
 {
 <Paper>
   <Chart
-    data={[
-      { argument: x, value: y},
-      { argument: 2, value: 30 },
-      { argument: 3, value: 20 },
-    ]}
+    data = {Data}
     >
     <ArgumentAxis />
     <ValueAxis />
@@ -72,6 +72,7 @@ function createChart(x, y)
   </Chart>
 </Paper>
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

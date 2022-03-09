@@ -1,7 +1,7 @@
 import { calculateNewValue } from '@testing-library/user-event/dist/utils';
-import React, { useRef, useState } from 'react';
-import { Form, Button, Card, Alert } from "react-bootstrap";
-import { CheckBox, Text, StyleSheet, View, Picker } from "react-native";
+import React from 'react';
+import { Form, Card, Alert } from "react-bootstrap";
+import { CheckBox, Text, StyleSheet, View, Picker, Button } from "react-native";
 import weightTracker from './WeightTracker';
 
 export default class Kcal extends React.Component{
@@ -46,28 +46,55 @@ export default class Kcal extends React.Component{
 
   getBMR()
   {
-    var weight = this.state.weight.slice()
-    var height = this.state.height.slice()
-    const age = this.state.age.slice()
-    const gender = this.state.gender.slice()
-    var bmr;
-
-    if (!this.state.isSelected)
+    if (this.state.weight != undefined && this.state.height != undefined && this.state.isSelected != undefined)
     {
-      weight = weight*0.453592 //lb to kg
-      height = height*0.0254 //in to m
-    }
+      var weight = this.state.weight
+      var height = this.state.height
+      const age = this.state.age
+      const gender = this.state.gender
+      var bmr;
 
-    if (gender == "male")
-    {
-      bmr = 10*weight + 625*height - 5*age + 5
-    }
-    else if (gender == "female")
-    {
-      bmr = 10*weight + 625*height - 5*age - 161
-    }
+      if (!this.state.isSelected)
+      {
+        weight = weight*0.453592 //lb to kg
+        height = height*0.0254 //in to m
+      }
 
-    this.setState({BMR: bmr})
+      if (gender == "male")
+      {
+        bmr = 10*weight + 625*height - 5*age + 5
+      }
+      else if (gender == "female")
+      {
+        bmr = 10*weight + 625*height - 5*age - 161
+      }
+
+      this.setState({BMR: bmr.toFixed(3)})
+    }
+  }
+
+  getBMI()
+  {
+    if (this.state.weight != undefined && this.state.height != undefined && this.state.isSelected != undefined)
+    {
+      var weight = this.state.weight
+      var height = this.state.height
+      const isSelected = this.state.isSelected
+      var bmi;
+
+      
+
+      if (isSelected)
+      {
+        bmi = weight / (height*height)
+      }
+      else
+      {
+        bmi = weight / (height*height) * 703
+      }
+
+      this.setState({BMI: bmi.toFixed(3)})
+    }
   }
 
     render()
@@ -111,12 +138,16 @@ export default class Kcal extends React.Component{
           </Form.Group>
           <Form.Group id="age">
             <Form.Label>Age (Yrs)</Form.Label>
-            <Form.Control type="age" value={this.state.age} onChange={e => this.setState({age: e.target.value }, this.getBMR)}required />
+            <Form.Control type="age" value={this.state.age} onChange={e => this.setState({age: e.target.value })}required />
           </Form.Group>
+          <Button onPress={this.getBMI.bind(this)} title="Calculate BMI">
+          </Button>
+          <Button onPress={this.getBMR.bind(this)} title="Calculate BMR">
+          </Button>
         </Form>
 
         <Text style = {styles.label}>
-          BMI: {this.state.isSelected ? this.state.weight / (this.state.height*this.state.height) : this.state.weight / (this.state.height*this.state.height) * 703} {'\n'}
+          BMI: {this.state.BMI} {'\n'}
           BMR: {this.state.BMR} {'\n'}
           Recommended Daily Calorie Intake: {this.state.BMR} Kcal / Day
         </Text>
@@ -124,8 +155,10 @@ export default class Kcal extends React.Component{
         <Form>
           <Form.Group id="bmi">
           <Form.Label>Enter BMI Here:</Form.Label>
-            <Form.Control type="bmi" value={this.state.BMI} onChange={e => this.setState({BMI: e.target.value }, this.getMessage)} required />
+            <Form.Control type="bmi" value={this.state.BMI} onChange={e => this.setState({BMI: e.target.value })} required />
           </Form.Group>
+          <Button onPress={this.getMessage.bind(this)} title="Get Recommendation">
+          </Button>
         </Form>
         <View style={styles.container}>
           <Text style={styles.label}>
@@ -146,6 +179,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     marginBottom: 20,
+    marginHorizontal: 20,
     marginTop: 10,
   },
   checkboxContainer: {

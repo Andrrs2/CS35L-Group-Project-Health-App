@@ -6,34 +6,47 @@ import Paper from '@mui/material/Paper';
 import {ArgumentAxis, ValueAxis, Chart, LineSeries, SplineSeries} from '@devexpress/dx-react-chart-material-ui';
 import { ScatterSeries, ValueScale} from '@devexpress/dx-react-chart';
 
-
 export default class weightTracker extends React.Component{
   constructor(props){
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      domain: 250,
+      domain: JSON.parse(window.localStorage.getItem('domain')) === null ? 250 : parseFloat(JSON.parse(window.localStorage.getItem('domain'))),
       weight: 0,
-      track: JSON.parse(window.localStorage.getItem('track')) === null ? 1 : JSON.parse(window.localStorage.getItem('track')),
+      track: JSON.parse(window.localStorage.getItem('track')) === null ? 1 : parseFloat(JSON.parse(window.localStorage.getItem('track'))),
       DataArray: JSON.parse(window.localStorage.getItem('DataArray') === null) ? [{argument: 0, value: 0}] : JSON.parse(window.localStorage.getItem('DataArray')),
     }
   }
 
   handleSubmit(event) {
-    if (this.state.weight > this.state.domain)
+    if (parseFloat(this.state.weight) > parseFloat(this.state.domain))
     {
       this.setState({domain: this.state.weight})
     }
     this.setState({track: this.state.track + 1})
     let DataArray = [...this.state.DataArray];
     DataArray[this.state.track] = {argument: this.state.track, value: this.state.weight};
-    this.setState({ DataArray });
-    window.localStorage.setItem('track',  JSON.stringify(this.state.track));
-    window.localStorage.setItem('DataArray',  JSON.stringify(DataArray));
+    this.setState({ DataArray});
     alert('Submitted weight: ' + this.state.weight);
+    this.setStorage();
     event.preventDefault();
   }
 
+   setStorage()
+   {
+    let DataArray = [...this.state.DataArray];
+    window.localStorage.setItem('domain',  JSON.stringify(this.state.domain));
+    window.localStorage.setItem('track',  JSON.stringify(this.state.track));
+    window.localStorage.setItem('DataArray',  JSON.stringify(DataArray));
+   }
+   componentDidUpdate()
+   {
+     this.setStorage();
+   }
+  componentWillUnmount()
+  {
+    this.setStorage();
+  }
   render()
   {
     return (
@@ -47,7 +60,7 @@ export default class weightTracker extends React.Component{
             <input className="submit_form" type="submit" value="Submit" />
           </Form.Group>
         <View color="#01793b" style = {styles.checkbox}>
-        <form onSubmit={sessionStorage.clear()}>
+        <form onSubmit={localStorage.clear()}>
          <input className="input_form" type="submit" value="Clear Storage" />
           </form>  
           </View>

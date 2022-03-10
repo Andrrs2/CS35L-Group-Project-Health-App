@@ -32,22 +32,35 @@ export default class Kcal extends React.Component{
     this.getBMI = this.getBMI.bind(this)
     this.getBMR = this.getBMR.bind(this)
     this.state = {
-      weight: 0,
-      height: 0,
+      weight: JSON.parse(window.localStorage.getItem('weight')) === null ? 0 : parseFloat(JSON.parse(window.localStorage.getItem('weight'))),
+      height: JSON.parse(window.localStorage.getItem('height')) === null ? 0 : parseFloat(JSON.parse(window.localStorage.getItem('height'))),
       age: 0,
       BMI: 0,
       BMR: 0,
       gender: "male",
       isSelected: false,
       message: "",
-      intakeMessage: "",
     };
+  }
+
+  setStorage()
+  {
+    window.localStorage.setItem('weight', JSON.stringify(this.state.weight));
+    window.localStorage.setItem('height', JSON.stringify(this.state.height));
+  }
+
+  componentDidUpdate()
+  {
+    this.setStorage();
+  }
+  componentWillUnmount()
+  {
+    this.setStorage();
   }
 
   getMessage()
   {
     const bmi = this.state.BMI
-    console.log(bmi)
     
     if (bmi >= 30)
     {
@@ -69,10 +82,10 @@ export default class Kcal extends React.Component{
 
   getBMR()
   {
-    if (this.state.weight != undefined && this.state.height != undefined && this.state.isSelected != undefined)
+    if (parseFloat(this.state.weight) != undefined && parseFloat(this.state.height) != undefined && this.state.isSelected != undefined)
     {
-      var weight = this.state.weight
-      var height = this.state.height
+      var weight = parseFloat(this.state.weight)
+      var height = parseFloat(this.state.height)
       const age = this.state.age
       const gender = this.state.gender
       var bmr;
@@ -93,14 +106,15 @@ export default class Kcal extends React.Component{
       }
       this.setState({BMR: bmr.toFixed(3)})
     }
+    this.setStorage();
   }
 
   getBMI()
   {
-    if (this.state.weight != undefined && this.state.height != undefined && this.state.isSelected != undefined)
+    if (parseFloat(this.state.weight) != undefined && parseFloat(this.state.height) != undefined && this.state.isSelected != undefined)
     {
-      var weight = this.state.weight
-      var height = this.state.height
+      var weight = parseFloat(this.state.weight)
+      var height = parseFloat(this.state.height)
       const isSelected = this.state.isSelected
       var bmi;
 
@@ -115,6 +129,7 @@ export default class Kcal extends React.Component{
 
       this.setState({BMI: bmi.toFixed(3)})
     }
+    this.setStorage();
   }
 
     render()
@@ -151,11 +166,11 @@ export default class Kcal extends React.Component{
             <Form>
               <Form.Group id="weight">
                 <Form.Label className="label_form">Weight ({this.state.isSelected ? "kg" : "lb"})</Form.Label>
-                <Form.Control className="form_box1" type="weight" value={this.state.weight} onChange={e => this.setState({weight: e.target.value })} required />
+                <Form.Control className="form_box1" type="weight" value={parseFloat(this.state.weight)} onChange={e => this.setState({weight: e.target.value })} required />
               </Form.Group>
               <Form.Group id="height">
                 <Form.Label className="label_form">Height ({this.state.isSelected ? "m" : "in"})</Form.Label>
-                <Form.Control className="form_box2" type="height" value={this.state.height} onChange={e => this.setState({height: e.target.value })}required />
+                <Form.Control className="form_box2" type="height" value={parseFloat(this.state.height)} onChange={e => this.setState({height: e.target.value })}required />
               </Form.Group>
               <Form.Group id="age">
                 <Form.Label className="label_form">Age (Yrs)</Form.Label>

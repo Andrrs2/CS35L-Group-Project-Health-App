@@ -9,6 +9,7 @@ export default function Signup() {
   const passwordConfirmRef = useRef()
   const usernameRef = useRef()
   const goalsRef = useRef()
+  const weightRef = useRef()
   const { signup } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -24,7 +25,7 @@ export default function Signup() {
     try {
       setError("")
       setLoading(true)
-      await signup(usernameRef.current.value, emailRef.current.value, passwordRef.current.value, goalsRef.current.value)
+      await signup(usernameRef.current.value, emailRef.current.value, passwordRef.current.value, goalsRef.current.value, weightRef.current.value)
       history.push("/")
     } catch {
       setError("Failed to create an account")
@@ -56,6 +57,10 @@ export default function Signup() {
             <Form.Group id="password-confirm">
               <Form.Label className="confirm_label">Password Confirmation </Form.Label>
               <Form.Control className="form_box1" type="password" ref={passwordConfirmRef} required />
+            </Form.Group>
+            <Form.Group id="weight">
+              <Form.Label className="username_label">Current Weight </Form.Label>
+              <Form.Control className="form_box1" type="weight" ref={weightRef} required />
             </Form.Group>
             <Form.Group id="goals">
               <Form.Label className="goal_label">Write down your goals! </Form.Label>

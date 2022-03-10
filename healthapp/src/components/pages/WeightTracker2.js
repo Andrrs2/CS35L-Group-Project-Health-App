@@ -1,100 +1,3 @@
-// import React, { useRef, useState } from 'react';
-// import { Form, } from "react-bootstrap";
-// import { CheckBox, Text, StyleSheet, View} from "react-native";
-// import Paper from '@mui/material/Paper';
-// import {ArgumentAxis, ValueAxis, Chart, LineSeries, SplineSeries} from '@devexpress/dx-react-chart-material-ui';
-// export default class weightTracker extends React.Component{
-//   constructor(props){
-//     super(props)
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//     this.state = {
-//       weight: 0,
-//       track: localStorage.getItem('track') === null ? 1 : JSON.parse(localStorage.getItem('track')),
-//       DataArray: localStorage.getItem('DataArray') === null ? [{argument: 0, value: 0}] : JSON.parse(localStorage.getItem('DataArray')),
-//     }
-//   }
-//   handleSubmit(event) {
-//     this.setState({track: this.state.track + 1})
-//     let DataArray = [...this.state.DataArray];
-//     DataArray[0] = {argument: 0, value: 0}
-//     DataArray[this.state.track] = {argument: this.state.track, value: this.state.weight};
-//     this.setState({ DataArray });
-//     localStorage.setItem('DataArray',  JSON.stringify(DataArray));
-//     localStorage.setItem('track', JSON.stringify(this.state.track));
-//     alert('A weight was submitted: ' + this.state.weight);
-//     event.preventDefault();
-//   }
-  
-//   render()
-//   {
-//     return (
-//       <View style = {styles.container}>
-//       <h3>Weight Tracker:</h3>
-//       <View style = {styles.checkboxContainer}>
-//         <View style={styles.container}>
-//         <Form onSubmit= {this.handleSubmit}>
-//           <Form.Group id="weight">
-//             <Form.Label>Weight (lb)</Form.Label>
-//             <Form.Control type="weight" value={this.state.weight}  onChange={e => this.setState({weight: e.target.value})} required />
-//             <input type="submit" value="Submit" />
-//           </Form.Group>
-//         <View style = {styles.checkbox}>
-//         <form onSubmit={localStorage.clear()}>
-//          <input type="submit" value="Clear Storage" />
-//           </form>  
-//           </View>
-//         </Form> 
-//         </View>
-//         </View>
-//         <View style={styles.picker}>
-//         <Paper>
-//           <Chart
-//              data = {this.state.DataArray}
-//           >
-//             <ArgumentAxis />
-//             <ValueAxis />
-//             <LineSeries valueField="value" argumentField="argument" color='BLUE' /> 
-//             <SplineSeries
-//             valueField="splineValue"
-//             argumentField="argument"
-//           /> 
-//           </Chart>
-//         </Paper>
-//         </View>
-//         </View>
-//       )
-//     }
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "space-evenly",
-//     marginBottom: 20,
-//     marginTop: 10,
-//   },
-//   checkboxContainer: {
-//     flexDirection: "row",
-//     marginBottom: 20,
-//     marginHorizontal: 20,
-//     marginTop: 20,
-//   },
-//   checkbox: {
-//     alignSelf: "center",
-//     marginHorizontal: 20,
-//   },
-//   picker: { 
-//     alignSelf: "center",
-//     height: 150, 
-//     width: 500,
-//   },
-// });
-
-
-
-
-
 import React, { useRef, useState, useEffect} from 'react';
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import "../../App.css";
@@ -119,8 +22,7 @@ export default function WeightTracker() {
 
     try {
       db.collection('users').doc(currentUser.uid).update({
-        weightHistory: [],
-        dateHistory: []
+        weightHistory: []
       })
     }
     catch {
@@ -163,21 +65,13 @@ export default function WeightTracker() {
         // })
       // })
 
-      let currentDate = new Date();
-      let cDay = currentDate.getDate();
-      let cMonth = currentDate.getMonth() + 1;
-      let cYear = currentDate.getFullYear();
-      const date = cDay + "/" + cMonth + "/" + cYear
       const x = await db.collection('users').doc(currentUser.uid).get()
       const currHistory = x.data().weightHistory
-      const currDateHist = x.data().dateHistory
       //console.log(x.data().weightHistory)
       currHistory.push(weightRef.current.value)
-      currDateHist.push(date)
       //console.log(currHistory)
       db.collection('users').doc(currentUser.uid).update({
-        weightHistory: currHistory,
-        dateHistory: currDateHist
+        weightHistory: currHistory
       })
       // history.push("/")
     } catch {
@@ -195,14 +89,10 @@ export default function WeightTracker() {
     var x = db.collection('users').doc(currentUser.uid)
     // const doc = await x.get()
     // x.get().then(doc => {
-    //FIX WEIGHT HISTORY TO ALSO DISPLAY DATES
     x.onSnapshot(doc => {
-      var dataArr = doc.data().weightHistory
-      var arrayLen = dataArr.length
-      var dateArr = doc.data().dateHistory
-      var html = ""
-      for ( var i = 0; i < arrayLen; i++)
-        html += `<div>${dataArr[i]} (${dateArr[i]})</div>`
+      const html = `
+        <div>${doc.data().weightHistory}</div>
+        `
       document.getElementById("h3").innerHTML = html;
       
       var canvas = document.getElementById( "testCanvas" );  
@@ -226,9 +116,8 @@ export default function WeightTracker() {
       context.lineTo( GRAPH_LEFT, GRAPH_BOTTOM );  
       context.lineTo( GRAPH_RIGHT+1000, GRAPH_BOTTOM );  
       context.stroke();   
-      // var dataArr = doc.data().weightHistory//[ 6, 8, 10, 12, 11, 7, 5, 8 ];  
-      // var arrayLen = dataArr.length
-      // var dateArr = doc.data().dateHistory
+      var dataArr = doc.data().weightHistory//[ 6, 8, 10, 12, 11, 7, 5, 8 ];  
+      var arrayLen = dataArr.length;  
    
       var largest = 0;  
       for( var i = 0; i < arrayLen; i++ ){  
@@ -237,7 +126,7 @@ export default function WeightTracker() {
           largest = temp;  
         }  
       }
-      //console.log(largest)
+      console.log(largest)
       // set font for fillText()  
       context.font = "16px Arial";  
       
@@ -275,7 +164,7 @@ export default function WeightTracker() {
       context.stroke();  
   
       // draw titles  
-      context.fillText( "Entry Date", GRAPH_RIGHT - 900, GRAPH_BOTTOM + 50);  
+      context.fillText( "Day of the week", GRAPH_RIGHT - 900, GRAPH_BOTTOM + 50);  
       context.fillText( "Weight (lbs)", GRAPH_LEFT - 110, GRAPH_HEIGHT / 2);  
   
       context.beginPath();  
@@ -288,15 +177,9 @@ export default function WeightTracker() {
       for( var i = 0; i < arrayLen; i++ ){  
         context.lineTo( GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT, ( GRAPH_HEIGHT - dataArr[ i ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP );  
         // draw reference value for day of the week  
-        context.fillText( dateArr[i], 150+GRAPH_RIGHT / arrayLen * i, GRAPH_BOTTOM + 25);  
+        context.fillText( ( i + 1 ), 150+GRAPH_RIGHT / arrayLen * i, GRAPH_BOTTOM + 25);  
       }  
       context.stroke();  
-
-      // let currentDate = new Date();
-      // let cDay = currentDate.getDate();
-      // let cMonth = currentDate.getMonth() + 1;
-      // let cYear = currentDate.getFullYear();
-      // console.log("<b>" + cDay + "/" + cMonth + "/" + cYear + "</b>");
       });
   }
   

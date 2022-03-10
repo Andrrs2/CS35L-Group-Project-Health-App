@@ -63,16 +63,7 @@ function Navbar() {
                 Weight Tracker
               </Link>
             </li>
-
-            <li className='nav-item'>
-              <Link
-                to='/sleep_tracker'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Sleep Tracker
-              </Link>
-            </li>
+            
             <li className='nav-item'>
               <Link
                 to='/signin'

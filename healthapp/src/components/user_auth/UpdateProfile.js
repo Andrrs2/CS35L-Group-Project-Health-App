@@ -2,11 +2,12 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "./context"
 import { Link, useHistory } from "react-router-dom"
+import { db } from "../../firebase"
 
 export default function UpdateProfile() {
-  const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
+  const goalsRef = useRef()
   const { currentUser, updatePassword, updateEmail } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -21,17 +22,19 @@ export default function UpdateProfile() {
     const promises = []
     setLoading(true)
     setError("")
-
-    if (emailRef.current.value !== currentUser.email) {
-      promises.push(updateEmail(emailRef.current.value))
-    }
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value))
     }
+    if (goalsRef.current.value) {
+      db.collection('users').doc(currentUser.uid).update({
+        goals: goalsRef.current.value
+      })
+    }
+    
 
     Promise.all(promises)
       .then(() => {
-        history.push("/")
+        history.push("/account")
       })
       .catch(() => {
         setError("Failed to update account")
@@ -48,39 +51,35 @@ export default function UpdateProfile() {
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                ref={emailRef}
-                required
-                defaultValue={currentUser.email}
-              />
-            </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                ref={passwordRef}
+              <Form.Label className="password_label">Password (Leave blank to keep the same) </Form.Label>
+              <Form.Control className="form_box1"  type="password" ref={passwordRef}
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
             <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control
-                type="password"
-                ref={passwordConfirmRef}
+              <Form.Label className="confirm_label2">Password Confirmation </Form.Label>
+              <Form.Control className="form_box1" type="password" ref={passwordConfirmRef}
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
+            <Form.Group id="password-confirm">
+              <Form.Label className="goal_label2">Goals </Form.Label>
+              <Form.Control className="form_box1"as="textarea" rows={3} ref={goalsRef}
+                type="goals"
+                placeholder="Leave blank to keep the same"
+              />
+            </Form.Group>
+            <center>
             <Button disabled={loading} className="w-100" type="submit">
               Update
             </Button>
+            </center>
           </Form>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        <Link to="/">Cancel</Link>
+      <div style={{textAlign: 'center'}}>
+        <Link to="/account">Cancel</Link>
       </div>
     </>
   )

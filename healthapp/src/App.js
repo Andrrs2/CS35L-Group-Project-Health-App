@@ -5,7 +5,6 @@ import Home from './components/pages/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CalorieCounter from './components/pages/Kcal';
 import WeightTracker from './components/pages/WeightTracker';
-import SleepTracker from './components/pages/SleepTracker';
 import Timer_Test from './components/pages/Timer_Test';
 
 import Signup from "./components/user_auth/SignUp"
@@ -26,9 +25,8 @@ function App() {
           <Route path='/' exact component={Home} />
           <PrivateRoute path='/calorie_counter' exact component={CalorieCounter} />
           <PrivateRoute path='/timer_exercise' component={Timer_Test} />
-          <PrivateRoute path='/sleep_tracker' component={SleepTracker} />
           <PrivateRoute path='/weight_tracker' component={WeightTracker} />
-          <PrivateRoute path='/update-profile' component={UpdateProfile} />
+          <PrivateRoute path='/update_profile' component={UpdateProfile} />
           <PrivateRoute path='/account' component={Account} />
           <Route path='/signup' component={Signup} />
           <Route path='/signin' component={Signin} />

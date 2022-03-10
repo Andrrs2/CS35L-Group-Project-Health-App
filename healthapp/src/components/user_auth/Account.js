@@ -27,6 +27,14 @@ export default function Account() {
 
     setLoading(false)
   }
+  async function updateProfile(e){
+    e.preventDefault()
+    try {
+      history.push("/update_profile")
+    } catch {
+      setError("Failed to update profile")
+    }
+  }
 
   useEffect(() => {
         displayInfo()
@@ -65,11 +73,17 @@ export default function Account() {
       <Card>
         <Card.Body>
           {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={updateProfile}>
+            <Button disabled={loading} className="w-100" type="submit">
+                Update Profile
+            </Button>
+          </Form>
           <Form onSubmit={handleSubmit}>
             <Button disabled={loading} className="w-100" type="submit">
                 Sign Out
             </Button>
           </Form>
+          
         </Card.Body>
       </Card>
       </center>

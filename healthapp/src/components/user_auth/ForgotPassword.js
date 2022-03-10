@@ -43,12 +43,12 @@ export default function ForgotPassword() {
               Reset Password
             </Button>
           </Form>
-          <div className="w-100 text-center mt-3">
+          <div className="">
             <Link to="/signin">Sign In</Link>
           </div>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
+      <div className="">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
       </center>

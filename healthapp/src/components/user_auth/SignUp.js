@@ -26,7 +26,7 @@ export default function Signup() {
       setError("")
       setLoading(true)
       await signup(usernameRef.current.value, emailRef.current.value, passwordRef.current.value, goalsRef.current.value, weightRef.current.value)
-      history.push("/")
+      history.push("/account")
     } catch {
       setError("Failed to create an account")
     }
@@ -59,7 +59,7 @@ export default function Signup() {
               <Form.Control className="form_box1" type="password" ref={passwordConfirmRef} required />
             </Form.Group>
             <Form.Group id="weight">
-              <Form.Label className="username_label">Current Weight </Form.Label>
+              <Form.Label className="weight_label">Current Weight </Form.Label>
               <Form.Control className="form_box1" type="weight" ref={weightRef} required />
             </Form.Group>
             <Form.Group id="goals">

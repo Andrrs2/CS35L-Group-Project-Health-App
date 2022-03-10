@@ -18,7 +18,7 @@ export default function Signin() {
       setError("")
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
+      history.push("/account")
     } catch {
       setError("Failed to log in")
     }
@@ -49,7 +49,7 @@ export default function Signin() {
             </div>
           </Form>
           <div >
-            <Link to="/forgot-password"> <p className="forgot_pass">Forgot Password?</p></Link>
+            <p className="forgot_pass"><Link to="/forgot-password"> Forgot Password?</Link></p>
           </div>
         </Card.Body>
       </Card>

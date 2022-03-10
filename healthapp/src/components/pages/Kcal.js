@@ -29,6 +29,8 @@ export default class Kcal extends React.Component{
 
   constructor(props){
     super(props)
+    this.getBMI = this.getBMI.bind(this)
+    this.getBMR = this.getBMR.bind(this)
     this.state = {
       weight: 0,
       height: 0,
@@ -44,7 +46,7 @@ export default class Kcal extends React.Component{
 
   getMessage()
   {
-    const bmi = this.state.BMI.slice()
+    const bmi = this.state.BMI
     console.log(bmi)
     
     if (bmi >= 30)
@@ -89,7 +91,6 @@ export default class Kcal extends React.Component{
       {
         bmr = 10*weight + 625*height - 5*age - 161
       }
-
       this.setState({BMR: bmr.toFixed(3)})
     }
   }
@@ -102,8 +103,6 @@ export default class Kcal extends React.Component{
       var height = this.state.height
       const isSelected = this.state.isSelected
       var bmi;
-
-      
 
       if (isSelected)
       {
@@ -163,11 +162,11 @@ export default class Kcal extends React.Component{
                 <Form.Control className="form_box" type="age" value={this.state.age} onChange={e => this.setState({age: e.target.value })}required />
               </Form.Group>
               <div className="buttonContainer_kcal">
-              <Button color="#01793b" onPress={this.getBMI.bind(this)} title="Calculate BMI">
+              <Button color="#01793b" onPress={this.getBMI} title="Calculate BMI">
               </Button>
               </div>
               <div className="buttonContainer_kcal">
-              <Button color="#01793b" onPress={this.getBMR.bind(this)} title="Calculate BMR">
+              <Button color="#01793b" onPress={this.getBMR} title="Calculate BMR">
               </Button>
               </div>
             </Form>
@@ -228,6 +227,7 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     alignItems: "center",
     fontSize: 20,
+    textAlign: 'center'
   },
   picker: {
     height: 50, 

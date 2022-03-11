@@ -26,12 +26,12 @@ export default function UpdateProfile() {
     setError("")
 
     if (emailRef.current.value) {
-      // try {
-      //   updateEmail(emailRef.current.value)
-      // } catch {
-      //   console.log("error")
-      // }
-      promises.push(updateEmail(emailRef.current.value))
+      try {
+        updateEmail(emailRef.current.value)
+        history.push("/account")
+      } catch {
+        console.log("Failed to update account")
+      }
     }
     if (usernameRef.current.value) {
       db.collection('users').doc(currentUser.uid).update({
@@ -39,15 +39,19 @@ export default function UpdateProfile() {
       })
     }
     if (passwordRef.current.value) {
-      console.log(passwordRef.current.value)
-      promises.push(updatePassword(passwordRef.current.value))
+      try {
+        updatePassword(passwordRef.current.value)
+        history.push("/account")
+      } catch {
+        console.log("Failed to update account")
+      }
     }
     if (goalsRef.current.value) {
       db.collection('users').doc(currentUser.uid).update({
         goals: goalsRef.current.value
       })
     }
-    
+    setLoading(false)
 
     Promise.all(promises)
       .then(() => {

@@ -40,7 +40,7 @@ export default function Signin() {
             </Form.Group>
             <Form.Group id="password">
               <Form.Label className="label_form">Password </Form.Label>
-              <Form.Control className="form_box1" type="password" ref={passwordRef} required placeholder="6 is the maximum"/>
+              <Form.Control className="form_box1" type="password" ref={passwordRef} required placeholder="6 is the minimum"/>
             </Form.Group>
             <div className="buttonContainer_kcal">
             <Button disabled={loading} className="w-100" type="submit">

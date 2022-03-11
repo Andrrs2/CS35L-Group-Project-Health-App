@@ -267,6 +267,25 @@ a {
   font-size: 20px;
 }
 
+.email_label2{
+  margin-right: 372px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.username_label2{
+  margin-right: 330px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.password_label{
+  margin-right: 335px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+
 .w-100{
   background: #278052;
   font-size: 20px;
@@ -291,25 +310,42 @@ a {
 }
 
 .username_label{
-  margin-right: 335px;
+  margin-right: 327px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+.weight_label{
+  margin-right: 287px;
   font-family: sans-serif;
   font-size: 20px;
 }
 
 .email1_label{
-  margin-right: 375px;
+  margin-right: 369px;
   font-family: sans-serif;
   font-size: 20px;
 }
 
 .confirm_label{
+  margin-right: 213px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.confirm_label2{
   margin-right: 215px;
   font-family: sans-serif;
   font-size: 20px;
 }
 
 .goal_label{
-  margin-right: 250px;
+  margin-right: 220px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.goal_label2{
+  margin-right: 368px;
   font-family: sans-serif;
   font-size: 20px;
 }

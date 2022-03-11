@@ -212,8 +212,26 @@ a {
 }
 
 .label_form{
-  margin-left: 400px;
-  margin-right: 100px;
+  margin-left: 500px;
+  margin-right: 10px;
+  display: inline-block;
+  width: 300px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.sign-in_label{
+  margin-left: 450px;
+  margin-right: 50px;
+  display: inline-block;
+  width: 100px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.sign-up_label{
+  margin-left: 450px;
+  margin-right: 10px;
   display: inline-block;
   width: 300px;
   font-family: sans-serif;

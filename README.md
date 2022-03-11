@@ -39,3 +39,37 @@ email address, a password, as well as a sentence or two describing their
 goals. This account information gets saved to a server so the user can
 sign in using the sign in page. The Account page lets users view their
 fitness goals that were entered during sign up.
+
+## Installation
+
+This app uses npm modules outside of the default ones created by npm install.
+These are listed below:
+
+#### Materials-UI
+```
+npm install @mui/material @emotion/react @emotion/styled
+```
+#### Firebase
+```
+npm install firebase
+```
+#### React-Router-DOM
+```
+npm install react-router-dom
+```
+#### React Native
+```
+npm install react-native
+```
+#### React Native Web
+```
+npm install react-native-web
+```
+#### React Compound Timer
+```
+npm install  react-compound-timer --force
+```
+#### React Countdown Timer
+```
+npm install react-countdown-circle-timer
+```

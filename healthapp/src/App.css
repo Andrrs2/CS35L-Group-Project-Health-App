@@ -266,6 +266,13 @@ a {
   font-family: sans-serif;
   font-size: 20px;
 }
+
+.username_label2{
+  margin-right: 43px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
 .password_label{
   margin-right: 48px;
   font-family: sans-serif;

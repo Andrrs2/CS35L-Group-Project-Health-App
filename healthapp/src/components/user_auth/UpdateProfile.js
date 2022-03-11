@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom"
 import { db } from "../../firebase"
 
 export default function UpdateProfile() {
+  const usernameRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
   const goalsRef = useRef()
@@ -15,6 +16,7 @@ export default function UpdateProfile() {
 
   function handleSubmit(e) {
     e.preventDefault()
+
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
@@ -22,6 +24,11 @@ export default function UpdateProfile() {
     const promises = []
     setLoading(true)
     setError("")
+    if (usernameRef.current.value) {
+      db.collection('users').doc(currentUser.uid).update({
+        username: usernameRef.current.value
+      })
+    }
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value))
     }
@@ -51,6 +58,12 @@ export default function UpdateProfile() {
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            <Form.Group id="username">
+              <Form.Label className="username_label2">Username (Leave blank to keep the same) </Form.Label>
+              <Form.Control className="form_box1"  type="username" ref={usernameRef}
+                placeholder="Leave blank to keep the same"
+              />
+            </Form.Group>
             <Form.Group id="password">
               <Form.Label className="password_label">Password (Leave blank to keep the same) </Form.Label>
               <Form.Control className="form_box1"  type="password" ref={passwordRef}

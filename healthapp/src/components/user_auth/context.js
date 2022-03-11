@@ -10,15 +10,21 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
-
-  function signup(name, userEmail, password, goal) {
+  let currentDate = new Date();
+  let cDay = currentDate.getDate();
+  let cMonth = currentDate.getMonth() + 1;
+  let cYear = currentDate.getFullYear();
+  const date = cDay + "/" + cMonth + "/" + cYear
+  function signup(name, userEmail, password, goal, weight) {
     //return auth.createUserWithEmailAndPassword(email, password)
 
     auth.createUserWithEmailAndPassword(userEmail, password).then(cred => {
       return db.collection('users').doc(cred.user.uid).set({
         username: name,
         email: userEmail,
-        goals: goal
+        goals: goal,
+        weightHistory: [weight],
+        dateHistory: [date]
       });
     })
   }

@@ -212,7 +212,10 @@ a {
 }
 
 .label_form{
-  margin-right: 50px;
+  margin-left: 400px;
+  margin-right: 100px;
+  display: inline-block;
+  width: 300px;
   font-family: sans-serif;
   font-size: 20px;
 }
@@ -227,7 +230,7 @@ a {
 
 .form_box1{
   margin-bottom: 10px;
-  margin-left: 15px;
+  margin-right: 10px;
   padding: 10px 10px;
   font-family: sans-serif;
   font-size: 20px;
@@ -288,28 +291,4 @@ a {
 .forgot_pass{
   color: black;
   font-family: sans-serif;
-}
-
-.username_label{
-  margin-right: 335px;
-  font-family: sans-serif;
-  font-size: 20px;
-}
-
-.email1_label{
-  margin-right: 375px;
-  font-family: sans-serif;
-  font-size: 20px;
-}
-
-.confirm_label{
-  margin-right: 215px;
-  font-family: sans-serif;
-  font-size: 20px;
-}
-
-.goal_label{
-  margin-right: 250px;
-  font-family: sans-serif;
-  font-size: 20px;
 }

@@ -148,7 +148,7 @@ export default class Kcal extends React.Component{
                 value = {this.state.isSelected}
                 onValueChange={() => this.setState({isSelected: !this.state.isSelected})}
               />
-              <div className="label_form">
+              <div className="Kcal_label">
                 Metric System
               </div>
               
@@ -165,15 +165,15 @@ export default class Kcal extends React.Component{
             <View style={styles.container}>
             <Form>
               <Form.Group id="weight">
-                <Form.Label className="label_form">Weight ({this.state.isSelected ? "kg" : "lb"})</Form.Label>
+                <Form.Label className="Kcal_label">Weight ({this.state.isSelected ? "kg" : "lb"})</Form.Label>
                 <Form.Control className="form_box1" type="weight" value={parseFloat(this.state.weight)} onChange={e => this.setState({weight: e.target.value })} required />
               </Form.Group>
               <Form.Group id="height">
-                <Form.Label className="label_form">Height ({this.state.isSelected ? "m" : "in"})</Form.Label>
+                <Form.Label className="Kcal_label">Height ({this.state.isSelected ? "m" : "in"})</Form.Label>
                 <Form.Control className="form_box2" type="height" value={parseFloat(this.state.height)} onChange={e => this.setState({height: e.target.value })}required />
               </Form.Group>
               <Form.Group id="age">
-                <Form.Label className="label_form">Age (Yrs)</Form.Label>
+                <Form.Label className="Kcal_label">Age (Yrs)</Form.Label>
                 <Form.Control className="form_box" type="age" value={this.state.age} onChange={e => this.setState({age: e.target.value })}required />
               </Form.Group>
               <div className="buttonContainer_kcal">
@@ -193,7 +193,7 @@ export default class Kcal extends React.Component{
             </View>
             <Form>
               <Form.Group id="bmi">
-              <Form.Label className="label_form">Enter BMI Here:</Form.Label>
+              <Form.Label className="Kcal_label">Enter BMI Here:</Form.Label>
                 <Form.Control className="form_box"  type="bmi" value={this.state.BMI} onChange={e => this.setState({BMI: e.target.value })} required />
               </Form.Group>
               <div className="buttonContainer_kcal">

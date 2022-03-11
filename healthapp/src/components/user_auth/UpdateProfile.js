@@ -7,7 +7,7 @@ import { db } from "../../firebase"
 export default function UpdateProfile() {
   const usernameRef = useRef()
   const emailRef = useRef()
-  const passwordRef = useRef()
+  // const passwordRef = useRef()
   const passwordConfirmRef = useRef()
   const goalsRef = useRef()
   const { currentUser, updatePassword, updateEmail } = useAuth()
@@ -17,9 +17,9 @@ export default function UpdateProfile() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match")
-    }
+    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+    //   return setError("Passwords do not match")
+    // }
 
     const promises = []
     setLoading(true)
@@ -27,7 +27,13 @@ export default function UpdateProfile() {
 
     if (emailRef.current.value) {
       try {
-        updateEmail(emailRef.current.value)
+        var temp = emailRef.current.value
+        updateEmail(temp).then(()=>{
+          console.log(temp)
+          db.collection('users').doc(currentUser.uid).update({
+            email: temp
+          })
+        })
         history.push("/account")
       } catch {
         console.log("Failed to update account")
@@ -38,14 +44,17 @@ export default function UpdateProfile() {
         username: usernameRef.current.value
       })
     }
-    if (passwordRef.current.value) {
-      try {
-        updatePassword(passwordRef.current.value)
-        history.push("/account")
-      } catch {
-        console.log("Failed to update account")
-      }
-    }
+    // if (passwordRef.current.value) {
+    //   var temp2 = passwordRef.current.value
+    //   try {
+    //     updatePassword(temp2).then(()=>{
+    //       history.push("/account")
+    //     })
+    //     // history.push("/account")
+    //   } catch {
+    //     console.log("Failed to update account")
+    //   }
+    // }
     if (goalsRef.current.value) {
       db.collection('users').doc(currentUser.uid).update({
         goals: goalsRef.current.value
@@ -84,7 +93,7 @@ export default function UpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
-            <Form.Group id="password">
+            {/* <Form.Group id="password">
               <Form.Label className="password_label">Password </Form.Label>
               <Form.Control className="form_box1"  type="password" ref={passwordRef}
                 placeholder="Leave blank to keep the same"
@@ -95,7 +104,7 @@ export default function UpdateProfile() {
               <Form.Control className="form_box1" type="password" ref={passwordConfirmRef}
                 placeholder="Leave blank to keep the same"
               />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group id="password-confirm">
               <Form.Label className="goal_label2">Goals </Form.Label>
               <Form.Control className="form_box1"as="textarea" rows={3} ref={goalsRef}

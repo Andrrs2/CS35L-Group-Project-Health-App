@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
   let cDay = currentDate.getDate();
   let cMonth = currentDate.getMonth() + 1;
   let cYear = currentDate.getFullYear();
-  const date = cDay + "/" + cMonth + "/" + cYear
+  const date = cMonth + "/" + cDay + "/" + cYear
   function signup(name, userEmail, password, goal, weight) {
     //return auth.createUserWithEmailAndPassword(email, password)
 

@@ -52,14 +52,8 @@ export default function Account() {
         <div>${doc.data().goals}</div>
         `
       document.getElementById("h1").innerHTML = html1;
-      document.getElementById("h3").innerHTML = html2;
+      document.getElementById("goals").innerHTML = html2;
     });
-    // if (!doc.exists) {
-    //   console.log('No such document!');
-    // } else {
-    //   console.log('Document data:', doc.data().goals);
-    // }
-    // return doc.data().goals
   }
   
   
@@ -68,7 +62,7 @@ export default function Account() {
     <>
     <h1 id="h1" style={{textAlign: "center", color: 'green'}}></h1>
     <h2 style={{color: 'green', marginLeft: '1vw'}}>Your Goals:</h2>
-    <h3 style={{marginLeft: '1vw'}}id="h3"></h3>
+    <h3 style={{marginLeft: '1vw'}}id="goals"></h3>
     <center>
       <Card>
         <Card.Body>

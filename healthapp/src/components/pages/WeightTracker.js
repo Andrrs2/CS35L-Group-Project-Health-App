@@ -39,7 +39,7 @@ export default function WeightTracker() {
       let cDay = currentDate.getDate();
       let cMonth = currentDate.getMonth() + 1;
       let cYear = currentDate.getFullYear();
-      const date = cDay + "/" + cMonth + "/" + cYear
+      const date = cMonth + "/" + cDay + "/" + cYear
 
       const x = await db.collection('users').doc(currentUser.uid).get()
       const currHistory = x.data().weightHistory

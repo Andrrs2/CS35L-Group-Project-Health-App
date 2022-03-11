@@ -285,6 +285,9 @@ a {
   font-size: 20px;
 }
 
+#testCanvas{
+  border: solid 1px blue;
+}
 
 .w-100{
   background: #278052;

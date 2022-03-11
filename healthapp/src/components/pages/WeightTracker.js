@@ -69,6 +69,12 @@ export default function WeightTracker() {
       var dataArr = doc.data().weightHistory
       var arrayLen = dataArr.length
       var dateArr = doc.data().dateHistory
+      var start = 0
+
+      if (dataArr.length - 20 > 0) {
+        start = dataArr.length - 20
+      }
+
       var html = ""
       for ( var i = 0; i < arrayLen; i++)
         html += `<div>${dataArr[i]} (${dateArr[i]})</div>`
@@ -80,8 +86,8 @@ export default function WeightTracker() {
       // declare graph start and end  
       var GRAPH_TOP = 25;  
       var GRAPH_BOTTOM = 525;  
-      var GRAPH_LEFT = 150;  
-      var GRAPH_RIGHT = 1850;   
+      var GRAPH_LEFT = 120;  
+      var GRAPH_RIGHT = 1150;   
    
       var GRAPH_HEIGHT = 500;   
       var GRAPH_WIDTH = 450;  
@@ -97,7 +103,7 @@ export default function WeightTracker() {
       context.stroke();
    
       var largest = 0;  
-      for( var i = 0; i < arrayLen; i++ ){  
+      for( var i = start; i < arrayLen; i++ ){  
         var temp = parseInt(dataArr[i]) //convert string to int
         if( temp > largest ){  
           largest = temp;  
@@ -140,8 +146,8 @@ export default function WeightTracker() {
       context.stroke();  
   
       // draw titles  
-      context.fillText( "Entry Date", GRAPH_RIGHT - 900, GRAPH_BOTTOM + 50);  
-      context.fillText( "Weight (lbs)", GRAPH_LEFT - 150, GRAPH_HEIGHT / 2);  
+      context.fillText( "Entry Date (Shows Last 20 Entries)", GRAPH_RIGHT - 900, GRAPH_BOTTOM + 50);  
+      context.fillText( "Weight (lbs)", GRAPH_LEFT - 120, GRAPH_HEIGHT / 2);  
   
       context.beginPath();  
       context.lineJoin = "round";  
@@ -149,10 +155,11 @@ export default function WeightTracker() {
   
       context.moveTo( GRAPH_LEFT, ( GRAPH_HEIGHT - dataArr[ 0 ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP);  
       // draw reference value for day of the week  
-      for( var i = 0; i < arrayLen; i++ ){  
-        context.lineTo( GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT, ( GRAPH_HEIGHT - dataArr[ i ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP );  
+      for( var i = 0; i + start < arrayLen; i++ ){  
+        context.lineTo( GRAPH_RIGHT / (arrayLen - start) * i + GRAPH_LEFT, ( GRAPH_HEIGHT - dataArr[ i + start ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP );  
+        var temp = dateArr[i].substring(0, dateArr[i].length-4) + dateArr[i].substring(dateArr[i].length-2, dateArr[i].length)
         // draw reference value for day of the week  
-        context.fillText( dateArr[i], 150+GRAPH_RIGHT / arrayLen * i, GRAPH_BOTTOM + 25);  
+        context.fillText( temp, 80+GRAPH_RIGHT / (arrayLen - start) * i, GRAPH_BOTTOM + 25);  
       }  
       context.stroke();
       });
@@ -163,7 +170,7 @@ export default function WeightTracker() {
   return (
     <>
     <center>
-      <canvas id="testCanvas" width="1900" height="600"></canvas>
+      <canvas id="testCanvas" width="1250" height="600"></canvas>
     </center>
     
     
